@@ -3,7 +3,7 @@
 This is my [L2Ork](http://l2ork.music.vt.edu/main/) composition, for seven players using an instrument written in [Pure Data](http://puredata.info/).
 
 It's sort of a narrative piece inspired by dwarves in popular culture (I had seen The Hobbit around the start of the semester, and had also been fiddling with Dwarf Fortress a little).
-Since I don't have much formal musical training, I found it easier to get together a bunch of sounds and put them together.
+I don't have much formal musical training, and I found it easier to get together a bunch of sounds and smoosh them together.
 I think it turned out alright.
 The process was more interesting to me.
 I used [Overtone](http://overtone.github.io) to compose the piece and [Quil](https://github.com/quil/quil) and LaTeX to generate the score, which you can view [here](https://github.com/alxlit/dwarves/blob/master/score.pdf?raw=true).
