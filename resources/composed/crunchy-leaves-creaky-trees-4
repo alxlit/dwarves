@@ -1,0 +1,1 @@
+(:amp 1 :loop? 1 :fade-out? 1 :rate "1-1.25x" :reverb "??" [10 (walk-in-woods 0) :loop? 0 :rate 1.1 :amp 0.5] [50 (creaky-tree 0) :loop? 0 :fade-out? 1])

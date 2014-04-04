@@ -1,0 +1,9 @@
+#!/bin/sh
+
+SOURCE=resources/composed
+DEST=/media/KINGSTON/l2ork
+
+for n in 1 2 3 4 5 6 7; do
+    mkdir -p $DEST/P$n
+    cp -f $SOURCE/*-$n.aiff $DEST/P$n
+done

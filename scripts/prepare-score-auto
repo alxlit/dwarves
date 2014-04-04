@@ -1,0 +1,11 @@
+#!/bin/sh
+
+while true; do
+  change=$(inotifywait -e close_write,moved_to,create .)
+  change=${change#./ * }
+  if [ "$change" = "player-1.png" ]; then
+      sleep 0.5s;
+      echo "rebuilding"
+      ./scripts/prepare-score;
+  fi
+done

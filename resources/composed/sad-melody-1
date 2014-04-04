@@ -1,0 +1,1 @@
+(:loop? 0 :fade-out? 1 :reverb "??" :slice? 1 (map (fn [[beat notes]] [(* 16 beat) notes :inst sampled-cello :reverb 0.8]) (take 24 df-theme/melody)))

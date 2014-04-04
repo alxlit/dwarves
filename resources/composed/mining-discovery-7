@@ -1,0 +1,1 @@
+(:fade-in? 1 :loop? 1 :reverb? "??" :slice? 1 [6 (mining 4) :loop? 0] [3 (mining 5) :amp 1.5] [1] [3 (mining 7) :amp 2.5 :loop? 0] [30])

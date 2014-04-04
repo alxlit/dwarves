@@ -1,0 +1,67 @@
+#!/bin/sh
+
+# Prepare an audio file for the L2Ork instrument (PD)
+# Dependencies: ffmpeg, awk, grep, bc
+
+FILE="$1"
+BASENAME=$(basename "$FILE")
+FILENAME=${BASENAME%.*}
+
+SEEK="0.0"
+
+# it's a composed sound, which for some technical reason in Overtone has 1.5s
+# of silence at the start
+if [ $(basename $(dirname "$FILE")) = "composed" ]; then
+    SEEK="1.5"
+fi
+
+# combine channels and output aiff
+ffmpeg -ss "$SEEK" -i "$FILE" -loglevel error -ac 1 -f aiff "$FILENAME.aiff"
+
+# assuming that worked, switch to working on the aiff file
+FILE="$FILENAME.aiff"
+
+# get duration in seconds
+DURATION=$(ffmpeg -i "$FILE" 2>&1 | awk '/Duration/ {split($2,a,":");print a[1]*3600+a[2]*60+a[3]}')
+
+if [ -z "$DURATION" ]; then
+    echo 1>&2 "Couldn't determine duration!"
+    exit
+fi
+
+# not sure if both are needed (seems like it)
+FADE_START=$(echo "0.9*$DURATION" | bc)
+FADE_DURATION=$(echo "$DURATION - $FADE_START" | bc)
+
+[ "${FADE_START:0:1}" = "." ] && FADE_START="0$FADE_START";
+[ "${FADE_DURATION:0:1}" = "." ] &&  FADE_DURATION="0$FADE_DURATION";
+
+# get max_volume in decibels
+LOUDNESS=$(ffmpeg -i "$FILE" -af volumedetect -f null /dev/null 2>&1 | grep max_volume | grep -Po "\-?\d+.\d+ dB")
+LOUDNESS=${LOUDNESS% dB}
+
+if [ -z "$LOUDNESS" ]; then
+    echo 1>&2 "Couldn't analyze loudness!"
+    exit 1
+fi
+
+# shift, in decibels
+SHIFT="0.0"
+
+if [ "${LOUDNESS:0:1}" = "-" ]; then
+    SHIFT=${LOUDNESS:1};
+else
+    SHIFT="-$LOUDNESS";
+fi
+
+[ "${SHIFT:0:1}" = "." ] && SHIFT="0$SHIFT";
+
+# normalize
+ffmpeg -i "$FILE" -loglevel error -af "volume=${SHIFT}dB" -f aiff "tmp1-$FILE"
+
+# fade
+ffmpeg -i "tmp1-$FILE" -loglevel error -af "afade=type=out:start_time=$FADE_START:d=$FADE_DURATION" -f aiff "tmp2-$FILE"
+
+# clean up
+rm -f "tmp1-$FILE"
+mv -f "tmp2-$FILE" "$FILE"

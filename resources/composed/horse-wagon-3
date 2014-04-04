@@ -1,0 +1,1 @@
+(:fade-in? 1 :fade-out? 1 :loop? 1 :rate "1-1.5x" [10 (horse-drawn-wagon 0) :loop? 1] [5 (horse-snort 0)] [13 (horse-drawn-wagon 1) :loop? 1] [30])

@@ -1,0 +1,1 @@
+(:loop? 1 :fade-in? 1 :fade-out? 1 :rate "??" :reverb "??" :slice? 1 [1 (pickaxe 1) :loop? 0] [1 (pickaxe 2) :loop? 0] [1 (pickaxe 3) :loop? 0] [1 (pickaxe 4) :loop? 0] ...)

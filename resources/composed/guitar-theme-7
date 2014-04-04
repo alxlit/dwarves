@@ -1,0 +1,1 @@
+(:fade-in? 1 :fade-out? 1 :amp 0.5 :rate "1-1.5x" [60 (theme 2) :loop? 1])

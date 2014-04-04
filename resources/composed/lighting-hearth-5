@@ -1,0 +1,1 @@
+(:loop? 1 :fade-out? 1 :rate "1-1.25x" [5 (strike-match 0) :loop? 0] [1/2] [2 (blow-flame 0) :amp 2 :fade-in? 1 :rate 2 :loop? 0] [1/2] [47 (fire 0) :amp 0.8 :fade-in? 1])

@@ -1,0 +1,5 @@
+#!/bin/sh
+
+# Puts the notations in a single page for printing
+latexmk -pdf score.tex
+

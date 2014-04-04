@@ -1,0 +1,1 @@
+(:fade-in? 1 :fade-out? 1 :loop? 1 :rate "1-1.5x" [14 (joviality 0) :loop? 0] [5 (joviality 1) :loop? 0] [25])

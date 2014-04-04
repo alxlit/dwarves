@@ -1,0 +1,1 @@
+(:loop? 1 :fade-out? 1 :slice? 1 [6 (door-squeak 0) :amp 1 :loop? 0 :rate 0.8] [1] [7 (walking 1) :loop? 0] [2] [5 (walking 1) :loop? 0 :rate 1.5] [2] [5 (door-squeak 1) :amp 0.5 :loop? 0 :rate 1.2] [27])

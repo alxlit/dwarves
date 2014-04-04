@@ -1,0 +1,1 @@
+(:fade-in? 1 :fade-out? 1 :loop? 1 :rate "1-1.5x" [60 (distant-drums 0)])

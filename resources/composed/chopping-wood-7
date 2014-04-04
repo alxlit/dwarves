@@ -1,0 +1,1 @@
+(:loop? 1 :fade-out? 1 :rate "1-1.5x" :slice? 1 [10 (wood-chop 0) :loop? 1 :amp 0.5] [8 (tree-falling 0) :loop? 0] [8 (bees 0) :loop? 0 :fade-in? 1 :reverb 0.1] [2 (pile-of-wood 0) :loop? 0 :reverb 0.1] [15])
